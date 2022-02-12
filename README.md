@@ -19,7 +19,9 @@ You should be able to run the notebooks provided after the setup is done.
 ## Code and Notebooks
 In this repo, two Jupyter notebooks is provided.
 1. `01_Visualize_Contourlet_Transform.ipynb` - Visualize the contourlet transform output of a sample image, as described in the paper.
+
 ![](images/contourlet_transform.png)
+
 2. `02_Training_DEMO.ipynb` - A minimal example of training a Contourlet-CNN on the CIFAR-10 dataset. 
 
 The `pycontourlet` folder contains a modified version of the [pycontourlet](https://github.com/mazayux/pycontourlet) package from [mazayux](https://github.com/mazayux). Unlike the original, this version works on Python 3.
@@ -29,11 +31,12 @@ The `contourlet_cnn.py` contains the class definition for the Contourlet-CNN net
 ## Network Variants
 ![](images/ablation.png)
 ![](images/splicing_vs_resizing.png)
+
 The variants of the Contourlet-CNN model. From left to right, each variant is an incremental version of the previous variant, as such in an abalation study in the original paper.
 - ``"origin"`` - The 'origin' splices the elongated decomposed images into its corresponding sizes since the contourlet has elongated supports. No SSF features is concatenated to the features in FC2 layer.
 - ``"SSFF"`` - Instead of splicing, the 'SSFF' (spatial–spectral feature fusion) via contourlet directly resize the elongated decomposed images into its corresponding sizes. No SSF features is concatenated to the features in FC2 layer.
 - ``"SSF"`` - In addition to 'SSFF', the 'SFF' (statistical feature fusion) that denotes the additional texture features of decomposed images, are concatenated to the features in FC2 layer. The mean and variance of each subbands are chosen as the texture features of decomposed images.
-- 
+ 
 In  the original paper, the images are converted to grayscale image before feeding into the network. This implementation supports both grayscale images and images with full RGB channels. By setting the `spec_type` parameter, For full RGB channels, use `"all"`, while to use grayscale images, use `"avg"`.
 
 Examples:
