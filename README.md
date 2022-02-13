@@ -7,11 +7,11 @@ For texture classification, spectral analysis is traditionally employed in the f
 
 ## Installation
 The code is tested in a Conda environment setup. First, install PyTorch, torchvision and the appropriate version of cudatoolkit. The code is tested with torch=1.9.1 and torchvision=0.10.1.
-```
+```bash
 conda install pytorch torchvision cudatoolkit=11.1 -c pytorch -c conda-forge
 ```
 Next, install the other supporting packages from the `requirements.txt` provided.
-```
+```bash
 pip install -r requirements.txt
 ```
 You should be able to run the notebooks provided after the setup is done.
@@ -40,7 +40,7 @@ The variants of the Contourlet-CNN model. From left to right, each variant is an
 In  the original paper, the images are converted to grayscale image before feeding into the network. This implementation supports both grayscale images and images with full RGB channels. By setting the `spec_type` parameter, For full RGB channels, use `"all"`, while to use grayscale images, use `"avg"`.
 
 Examples:
-```
+```python
 # Uses all RGB channel for contourlet transform, the output are resized, and the statistical
 # features are concatenated to the FC layer. This is the recommended variant.
 model = ContourletCNN(input_dim=(3, 224, 224), num_classes=10, variant="SSF", spec_type="all")
